@@ -1,0 +1,42 @@
+{
+  "label": "BigQuery Information Schema Performance Monitoring",
+  "category_label": "Models",
+  "branding": {
+    "image_uri": "https://marketplace-api.looker.com/block-icons/bq_icon.png",
+    "tagline": "Monitor and Explore your BigQuery Usage and Performance"
+  },
+
+    "constants": {
+      "CONNECTION": {
+        "label": "Connection Name",
+        "value_constraint": "connection",
+        "description": "Enter the name of the Looker connection to use"
+      },
+      "SCOPE": {
+        "label": "BigQuery Admin Project",
+        "description": "Table from which jobs data will be sourced, either 'PROJECT' or 'ORGANIZATION' per the options described at https://cloud.google.com/bigquery/docs/information-schema-jobs"
+      },
+      "REGION": {
+        "label": "Dataset Location",
+        "description": "Example: 'us' or 'eu'"
+      },
+      "BILLING_PROJECT_ID": {
+        "label": "Billing Project ID",
+        "description": "This is used to reference Capacity Commitment data (for flat-rate billing) to compare slot usage against"
+      },
+      "RESERVATION_ADMIN_PROJECT": {
+        "label": "Reservation Admin Project",
+        "description": "May be different than Billing Project ID, used when querying RESERVATIONS_BY_<SCOPE> Data"
+      },
+      "MAX_JOB_LOOKBACK": {
+        "label": "Max Job Lookback",
+        "description": "Number and datepart supported by https://cloud.google.com/bigquery/docs/reference/standard-sql/timestamp_functions#timestamp_sub. Example: '8 HOUR'. This is maximum amount of time to look backwards in job data to find jobs that may still be open in a filtered window of slot usage"
+      }
+    },
+    "models": [
+      {
+        "name": "bigquery_information_schema",
+        "connection_constant": "CONNECTION"
+      }
+    ]
+}
