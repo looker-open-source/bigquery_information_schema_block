@@ -2,9 +2,10 @@
 
 constant: CONNECTION {
   # Enter the name of the Looker connection to use
-  value: "looker_app_2"
+  value: "oauth"
   export: override_optional
 }
+## EVAN WINS
 
 constant: REGION {
   # E.g. us
