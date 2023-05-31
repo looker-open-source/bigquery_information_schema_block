@@ -9,9 +9,11 @@ view: jobs {
     sql:
       SELECT *
       FROM `region-@{REGION}.INFORMATION_SCHEMA.JOBS_BY_@{SCOPE}`
-      WHERE {% condition date.date_filter %} creation_time {% endcondition %}
     ;;
   }
+  # filter: date_filter {
+  #   type: date_time
+  # }
 }
 view: jobs_in_project {
   extends: [jobs_base]
@@ -19,10 +21,12 @@ view: jobs_in_project {
     sql:
       SELECT *
       FROM `region-@{REGION}.INFORMATION_SCHEMA.JOBS_BY_PROJECT`
-      WHERE creation_time >= {% date_start date.date_filter%}
-        AND creation_time < {% date_end date.date_filter%}
     ;;
+
   }
+  # filter: date_filter {
+  #   type: date_time
+  # }
   dimension: query_text { sql: ${query_raw} ;;}
 }
 view: jobs_in_organization{
@@ -31,12 +35,15 @@ view: jobs_in_organization{
     sql:
       SELECT *
       FROM `region-@{REGION}.INFORMATION_SCHEMA.JOBS_BY_ORGANIZATION`
-      WHERE creation_time >= {% date_start date.date_filter%}
-        AND creation_time < {% date_end date.date_filter%}
     ;;
   }
+  # filter: date_filter {
+  #   type: date_time
+  # }
   dimension: query_text { sql: "Query text is only available at PROJECT scope " ;;}
 }
+
+
 
 view: jobs_base {
   # This is the main Information Schema table - with one row per job executed
