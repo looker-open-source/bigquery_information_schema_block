@@ -15,7 +15,7 @@ constant: REGION {
 constant: SCOPE {
   # The table from which jobs data will be sourced, per the options described at https://cloud.google.com/bigquery/docs/information-schema-jobs
   # This block has been tested with PROJECT or ORGANIZATION. Tables for USER and FOLDER are untested as of 2021-04
-  value: "PROJECT"
+  value: "ORGANIZATION"
   export: override_optional
 }
 constant: BILLING_PROJECT_ID {
