@@ -20,12 +20,12 @@ constant: SCOPE {
 }
 constant: BILLING_PROJECT_ID {
   # This is used to reference Capacity Commitment data (for flat-rate billing) to compare slot usage against
-  value: " "
+  value: "fast-audio-134400"
   export: override_optional
 }
 constant: RESERVATION_ADMIN_PROJECT  {
   # IF Different than Billing Project ID, used when querying RESERVATIONS_BY_<SCOPE> Data
-  value: " "
+  value: "fast-audio-134400"
   export: override_optional
 }
 
