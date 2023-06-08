@@ -9,6 +9,7 @@ view: jobs {
     sql:
       SELECT *
       FROM `region-@{REGION}`.INFORMATION_SCHEMA.JOBS_BY_@{SCOPE}
+      WHERE {% condition date.date_filter %} creation_time {% endcondition %}
     ;;
   }
 }
