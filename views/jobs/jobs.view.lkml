@@ -153,13 +153,6 @@ view: jobs_base {
     sql: ${TABLE}.total_slot_ms ;;
   }
 
-  dimension: is_cache_hit {
-    label: "Is Cache Hit?"
-    description: "Whether the query results of this job were from a cache"
-    type: yesno
-    sql: ${TABLE}.cache_hit;;
-  }
-
   # Dimension group: destination table {
 
   dimension: destination_table {
@@ -239,9 +232,19 @@ view: jobs_base {
     sql: TO_JSON_STRING(${TABLE}.job_stages) ;;
   }
 
+  # Dimension group: Optimization {
+
+  dimension: is_cache_hit {
+    group_label: "Optimization"
+    label: "Is Cache Hit?"
+    description: "Whether the query results of this job were from a cache"
+    type: yesno
+    sql: ${TABLE}.cache_hit;;
+  }
+
   dimension: spill_to_disk_bytes {
     hidden: yes # Prefer measures
-    group_label: "Spill to Disk"
+    group_label: "Optimization"
     label: "Spill to Disk Bytes"
     description: "Number of bytes in the job's shuffle operations that spilled to disk, which results in slower performance"
     type: number
@@ -249,13 +252,42 @@ view: jobs_base {
   }
 
   dimension: has_spill_to_disk {
-    hidden: yes # Prefer measures
-    group_label: "Spill to Disk"
+    group_label: "Optimization"
     label: "Has Spill to Disk?"
     description: "Whether any stages in the job needed to spill shuffle operations to disk, which results in slower performance"
     type: yesno
     sql: ${spill_to_disk_bytes}>0 ;;
   }
+
+    dimension: bi_engine_mode {
+      hidden: yes # Hiding because this appears to just be a less detailed version of acceleration_mode
+      group_label: "Optimization"
+      label: "BI Engine Mode"
+      description: "e.g., ACCELERATION_MODE_UNSPECIFIED, DISABLED, PARTIAL, FULL"
+      type: string
+      sql:  ${TABLE}.bi_engine_statistics.bi_engine_mode ;;
+      suggestions: ["ACCELERATION_MODE_UNSPECIFIED", "DISABLED", "PARTIAL", "FULL"]
+    }
+    dimension: acceleration_mode {
+      group_label: "Optimization"
+      label: "BI Engine Acceleration Mode"
+      description: "e.g., ACCELERATION_MODE_UNSPECIFIED, DISABLED, PARTIAL, FULL"
+      type: string
+      sql:  ${TABLE}.bi_engine_statistics.acceleration_mode ;;
+      suggestions: ["ACCELERATION_MODE_UNSPECIFIED", "DISABLED", "PARTIAL", "FULL"]
+    }
+
+    dimension: bi_engine_reasons {
+      group_label: "Optimization"
+      label: "BI Engine Reasons"
+      description: "List of codes identifying the high-level reasons for no/partial acceleration. See https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#Code"
+      type: string
+      sql: (SELECT STRING_AGG(DISTINCT code,", ") FROM UNNEST(${TABLE}.bi_engine_statistics.bi_engine_reasons)) ;;
+      suggestions: ["CODE_UNSPECIFIED","NO_RESERVATION","INSUFFICIENT_RESERVATION",
+        "UNSUPPORTED_SQL_TEXT", "INPUT_TOO_LARGE", "OTHER_REASON", "TABLE_EXCLUDED"]
+    }
+
+  # }
 
   dimension_group: start_time {
     group_label: "Start Time"
@@ -296,7 +328,6 @@ view: jobs_base {
     ]
     sql: ${TABLE}.end_time ;;
   }
-
 
   # Dimension group: Duration {
 
@@ -394,7 +425,6 @@ view: jobs_base {
 
   # }
 
-
   # Dimension group: Query Text {
 
   dimension: query_raw {
@@ -415,7 +445,7 @@ view: jobs_base {
   }
 
   dimension: query_snippet {
-    group_label: "Query Snippet"
+    group_label: "Query Text"
     description: "First 2000 characters of the SQL query text. Note: Only the PROJECT scope has the query column"
     # The Query Text field is removed from the Jobs by Organization table
     type: string
@@ -489,8 +519,7 @@ view: jobs_base {
 
 # End of dimension group: query text }
 
-
-# Dimension group: Bytes {
+  # Dimension group: Bytes {
 
   dimension: processed_bytes {
     hidden: yes # Use measures instead
@@ -639,7 +668,6 @@ view: jobs_base {
 
   # Measure group: Counts {
 
-
   measure: count {
     group_label: "Count"
 
@@ -687,6 +715,7 @@ view: jobs_base {
     drill_fields: [detail*]
   }
 
+  # }
 
   # Measure group: duration {
 
@@ -828,8 +857,6 @@ view: jobs_base {
   }
 
   # }
-
-  # End measure group duration }
 
   # Measure group: Spill to Disk {
 
