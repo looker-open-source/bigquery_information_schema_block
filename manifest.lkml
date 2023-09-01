@@ -2,7 +2,7 @@
 
 constant: CONNECTION {
   # Enter the name of the Looker connection to use
-  value: "looker_app_2"
+  value: "looker_private_demo" #value: "looker_app_2"
   export: override_optional
 }
 
@@ -14,7 +14,7 @@ constant: REGION {
 constant: SCOPE {
   # The table from which jobs data will be sourced, per the options described at https://cloud.google.com/bigquery/docs/information-schema-jobs
   # This block has been tested with PROJECT or ORGANIZATION. Tables for USER and FOLDER are untested as of 2021-04
-  value: "PROJECT"
+  value: "USER" #value: "PROJECT"
   export: override_optional
 }
 constant: BILLING_PROJECT_ID {
@@ -38,3 +38,45 @@ constant: MAX_JOB_LOOKBACK {
   value: "8 HOUR"
   export: override_optional
 }
+
+constant: PII_QUERY_TEXT {
+  # Whether/how to expose strings/numbers that may be embedded in query text or query plans (which might sometimes contain PII)
+  # Valid values are: SHOW, HASH, or HIDE
+  # Invalid values will be treated as HIDE
+  value: "HIDE"
+  export: override_optional
+}
+
+constant: PII_HASH_PADDING {
+  # If your other PII constant specifies the HASH option, you may specify padding to be added before computing the hash, to make the hash
+  # more resistant to pre-computed hash tables
+  value: "oQ4IS2cTmXBN"
+  export: override_optional
+}
+
+#LAMS
+#rule: K7{} # Provide one `primary_key`
+#rule: F1{} # No cross-view fields
+#rule: F2{} # No view-labeled fields
+#rule: F3{} # Count fields filtered
+#rule: F4{} # Description or hidden
+#rule: E1{} # Join with subst'n operator
+#rule: E7{} # Explore label 25-char max
+#rule: T1{} # Triggers use datagroups
+#rule: W1{} # Block indentation
+#
+#rule: mft1 {
+# description: "CONNECTION: If you adapted manifest values for development purposes, ensure they have the expected published default value."
+# match: "$.manifest.constant.CONNECTION.value"
+# expr_rule: (=== ::match "")
+#}
+#rule: mft2 {
+# description: "REGION: If you adapted manifest values for development purposes, ensure they have the expected published default value."
+# match: "$.manifest.constant.REGION.value"
+# expr_rule: (=== ::match "us")
+#}
+#rule: mft3 {
+# description: "SCOPE: If you adapted manifest values for development purposes, ensure they have the expected published default value."
+# match: "$.manifest.constant.SCOPE.value"
+# expr_rule: (=== ::match "PROJECT")
+#}
