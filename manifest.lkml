@@ -68,15 +68,15 @@ constant: PII_HASH_PADDING {
 #rule: mft1 {
 # description: "CONNECTION: If you adapted manifest values for development purposes, ensure they have the expected published default value."
 # match: "$.manifest.constant.CONNECTION.value"
-# expr_rule: (=== ::match "")
+# expr_rule: (=== ::match "") ;;
 #}
 #rule: mft2 {
 # description: "REGION: If you adapted manifest values for development purposes, ensure they have the expected published default value."
 # match: "$.manifest.constant.REGION.value"
-# expr_rule: (=== ::match "us")
+# expr_rule: (=== ::match "us") ;;
 #}
 #rule: mft3 {
 # description: "SCOPE: If you adapted manifest values for development purposes, ensure they have the expected published default value."
 # match: "$.manifest.constant.SCOPE.value"
-# expr_rule: (=== ::match "PROJECT")
+# expr_rule: (=== ::match "PROJECT") ;;
 #}
