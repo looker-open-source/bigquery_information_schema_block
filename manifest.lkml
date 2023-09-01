@@ -63,7 +63,6 @@ constant: PII_HASH_PADDING {
 #rule: E1{} # Join with subst'n operator
 #rule: E7{} # Explore label 25-char max
 #rule: T1{} # Triggers use datagroups
-#rule: W1{} # Block indentation
 #
 #rule: mft1 {
 # description: "CONNECTION: If you adapted manifest values for development purposes, ensure they have the expected published default value."

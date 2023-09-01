@@ -259,33 +259,33 @@ view: jobs_base {
     sql: ${spill_to_disk_bytes}>0 ;;
   }
 
-    dimension: bi_engine_mode {
-      hidden: yes # Hiding because this appears to just be a less detailed version of acceleration_mode
-      group_label: "Optimization"
-      label: "BI Engine Mode"
-      description: "e.g., ACCELERATION_MODE_UNSPECIFIED, DISABLED, PARTIAL, FULL"
-      type: string
-      sql:  ${TABLE}.bi_engine_statistics.bi_engine_mode ;;
-      suggestions: ["ACCELERATION_MODE_UNSPECIFIED", "DISABLED", "PARTIAL", "FULL"]
-    }
-    dimension: acceleration_mode {
-      group_label: "Optimization"
-      label: "BI Engine Acceleration Mode"
-      description: "e.g., ACCELERATION_MODE_UNSPECIFIED, DISABLED, PARTIAL, FULL"
-      type: string
-      sql:  ${TABLE}.bi_engine_statistics.acceleration_mode ;;
-      suggestions: ["ACCELERATION_MODE_UNSPECIFIED", "DISABLED", "PARTIAL", "FULL"]
-    }
+  dimension: bi_engine_mode {
+    hidden: yes # Hiding because this appears to just be a less detailed version of acceleration_mode
+    group_label: "Optimization"
+    label: "BI Engine Mode"
+    description: "e.g., ACCELERATION_MODE_UNSPECIFIED, DISABLED, PARTIAL, FULL"
+    type: string
+    sql:  ${TABLE}.bi_engine_statistics.bi_engine_mode ;;
+    suggestions: ["ACCELERATION_MODE_UNSPECIFIED", "DISABLED", "PARTIAL", "FULL"]
+  }
+  dimension: acceleration_mode {
+    group_label: "Optimization"
+    label: "BI Engine Acceleration Mode"
+    description: "e.g., ACCELERATION_MODE_UNSPECIFIED, DISABLED, PARTIAL, FULL"
+    type: string
+    sql:  ${TABLE}.bi_engine_statistics.acceleration_mode ;;
+    suggestions: ["ACCELERATION_MODE_UNSPECIFIED", "DISABLED", "PARTIAL", "FULL"]
+  }
 
-    dimension: bi_engine_reasons {
-      group_label: "Optimization"
-      label: "BI Engine Reasons"
-      description: "List of codes identifying the high-level reasons for no/partial acceleration. See https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#Code"
-      type: string
-      sql: (SELECT STRING_AGG(DISTINCT code,", ") FROM UNNEST(${TABLE}.bi_engine_statistics.bi_engine_reasons)) ;;
-      suggestions: ["CODE_UNSPECIFIED","NO_RESERVATION","INSUFFICIENT_RESERVATION",
-        "UNSUPPORTED_SQL_TEXT", "INPUT_TOO_LARGE", "OTHER_REASON", "TABLE_EXCLUDED"]
-    }
+  dimension: bi_engine_reasons {
+    group_label: "Optimization"
+    label: "BI Engine Reasons"
+    description: "List of codes identifying the high-level reasons for no/partial acceleration. See https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#Code"
+    type: string
+    sql: (SELECT STRING_AGG(DISTINCT code,", ") FROM UNNEST(${TABLE}.bi_engine_statistics.bi_engine_reasons)) ;;
+    suggestions: ["CODE_UNSPECIFIED","NO_RESERVATION","INSUFFICIENT_RESERVATION",
+      "UNSUPPORTED_SQL_TEXT", "INPUT_TOO_LARGE", "OTHER_REASON", "TABLE_EXCLUDED"]
+  }
 
   # }
 
