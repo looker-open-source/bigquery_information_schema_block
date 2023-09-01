@@ -1,0 +1,20 @@
+name: CI
+
+on: [push]
+
+jobs:
+  lams_job:
+    runs-on: ubuntu-latest
+    name: LAMS LookML Linter Job
+    steps:
+    - name: Checkout your LookML
+      uses: actions/checkout@v1
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '16.x'
+    - name: Install LAMS
+      run: npm install -g @looker/look-at-me-sideways@3
+    - name: Run LAMS
+      # See [PRIVACY.md](https://github.com/looker-open-source/look-at-me-sideways/blob/master/PRIVACY.md)
+      run: lams --reporting=no
