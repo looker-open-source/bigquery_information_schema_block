@@ -152,7 +152,7 @@ explore: jobs_base {
     view_label: "Job > Stages > Steps"
     relationship: one_to_many
     type: left_outer
-    sql: LEFT JOIN UNNEST(job_stages.steps) AS job_stage_steps WITH OFFSET job_stage_steps_offset ;;
+    sql: LEFT JOIN UNNEST(${job_stages.steps_raw}) AS job_stage_steps WITH OFFSET job_stage_steps_offset ;;
     required_joins: [job_stages]
   }
 

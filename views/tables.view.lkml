@@ -7,6 +7,7 @@ view: tables {
   measure: count {
     type: count
     drill_fields: [detail*]
+    filters: [table_name: "-NULL"]
   }
 
   # Dimension group: identifiers {

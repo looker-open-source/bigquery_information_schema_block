@@ -59,6 +59,8 @@ view: jobs_base {
       url: "https://console.cloud.google.com/bigquery?j=bq:@{REGION}:{{ value | uri_encode }}&page=queryresults"
       icon_url: "https://www.gstatic.com/devrel-devsite/prod/vb06d4bce6b32c84cf01c36dffa546f7ea4ff7fc8fcd295737b014c1412e4d118/cloud/images/favicons/onecloud/favicon.ico"
     }
+    #LAMS
+    #rule_exemptions:{F1:"The performance benefit of linking to a date-filterd dashboard is significant, and we can ensure that the date view is always available to prevent errors"}
   }
 
   dimension_group: creation {

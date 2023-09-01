@@ -2,7 +2,7 @@
 
 constant: CONNECTION {
   # Enter the name of the Looker connection to use
-  value: "looker_private_demo" #value: "looker_app_2"
+  value: "looker_private_demo" #value: ""
   export: override_optional
 }
 
@@ -59,23 +59,22 @@ constant: PII_HASH_PADDING {
 #rule: F1{} # No cross-view fields
 #rule: F2{} # No view-labeled fields
 #rule: F3{} # Count fields filtered
-#rule: F4{} # Description or hidden
 #rule: E1{} # Join with subst'n operator
 #rule: E7{} # Explore label 25-char max
 #rule: T1{} # Triggers use datagroups
 #
 #rule: mft1 {
-# description: "CONNECTION: If you adapted manifest values for development purposes, ensure they have the expected published default value."
+# description: "CONNECTION: If you adapted the manifest value for dev purposes, ensure it has the expected value to publish, \"\" (or update rule)"
 # match: "$.manifest.constant.CONNECTION.value"
 # expr_rule: (=== ::match "") ;;
 #}
 #rule: mft2 {
-# description: "REGION: If you adapted manifest values for development purposes, ensure they have the expected published default value."
+# description: "REGION: If you adapted the manifest value for dev purposes, ensure it has the expected value to publish, \"us\" (or update rule)"
 # match: "$.manifest.constant.REGION.value"
 # expr_rule: (=== ::match "us") ;;
 #}
 #rule: mft3 {
-# description: "SCOPE: If you adapted manifest values for development purposes, ensure they have the expected published default value."
+# description: "SCOPE: If you adapted the manifest value for dev purposes, ensure it has the expected value to publish, \"PROJECT\" (or update rule)"
 # match: "$.manifest.constant.SCOPE.value"
 # expr_rule: (=== ::match "PROJECT") ;;
 #}

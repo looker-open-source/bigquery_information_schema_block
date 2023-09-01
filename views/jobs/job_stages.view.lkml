@@ -339,6 +339,11 @@ view: job_stages {
 
   # Dimension Group: Step details {
 
+  dimension: steps_raw {
+    hidden: yes
+    sql: ${TABLE}.steps ;;
+  }
+
   dimension: steps_json {
     group_label: "Steps"
     label: "All Steps (JSON)"
@@ -360,7 +365,7 @@ view: job_stages {
         , "\n"
         ORDER BY s ASC
       )
-      FROM UNNEST(${TABLE}.steps) AS step WITH OFFSET s ) ;;
+      FROM UNNEST(${steps_raw}) AS step WITH OFFSET s ) ;;
     html: <div style="white-space:pre-line">{{value}}</div> ;;
   }
 

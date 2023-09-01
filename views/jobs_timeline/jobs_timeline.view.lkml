@@ -50,6 +50,10 @@ view: jobs_timeline_base {
 
 
   #Primary key is (job_id, period_start)
+
+  #LAMS
+  #rule_exemptions: {K7: "Although this view does have a composite primary key, we will likely never want to use it as this should never be on the 'one' side of a join, nor sym-agg'd"}
+
   dimension: job_id {
     hidden: yes # More intuitive to show as the PK in the job view than as a FK in the timeline view
     type: string
@@ -64,6 +68,8 @@ view: jobs_timeline_base {
       url: "https://console.cloud.google.com/bigquery?j=bq:@{REGION}:{{ value }}&page=queryresults"
       icon_url: "http://www.looker.com/favicon.ico"
     }
+    #LAMS
+    #rule_exemptions:{F1:"The performance benefit of linking to a date-filterd dashboard is significant, and we can ensure that the date view is always available to prevent errors"}
   }
 
   dimension_group: period_start {
@@ -134,10 +140,7 @@ view: jobs_timeline_base {
     sql: ${TABLE}.state ;;
   }
 
-
-
   # Measure Group: Job Seconds {
-
 
   measure: job_seconds {
     group_label: "Job Seconds"
@@ -146,6 +149,7 @@ view: jobs_timeline_base {
     type: count
     value_format_name: decimal_0
     drill_fields: [detail*]
+    filters: [job_id: "-NULL"]
   }
 
   measure: job_seconds_running {

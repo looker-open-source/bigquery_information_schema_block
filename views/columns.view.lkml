@@ -4,6 +4,7 @@ view: columns {
   measure: count {
     type: count
     drill_fields: [detail*]
+    filters: [column_name: "-NULL"]
   }
 
   dimension: table_catalog {
