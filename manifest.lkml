@@ -55,7 +55,6 @@ constant: PII_HASH_PADDING {
 }
 
 #LAMS
-#rule: K7{} # Provide one `primary_key`
 #rule: F1{} # No cross-view fields
 #rule: F2{} # No view-labeled fields
 #rule: F3{} # Count fields filtered
@@ -64,17 +63,17 @@ constant: PII_HASH_PADDING {
 #rule: T1{} # Triggers use datagroups
 #
 #rule: mft1 {
-# description: "CONNECTION: If you adapted the manifest value for dev purposes, ensure it has the expected value to publish, \"\" (or update rule)"
+# description: "CONNECTION: If you adapted this value for dev purposes, ensure it has the expected value to publish, \"\" (or update rule)"
 # match: "$.manifest.constant.CONNECTION.value"
 # expr_rule: (=== ::match "") ;;
 #}
 #rule: mft2 {
-# description: "REGION: If you adapted the manifest value for dev purposes, ensure it has the expected value to publish, \"us\" (or update rule)"
+# description: "REGION: If you adapted this value for dev purposes, ensure it has the expected value to publish, \"us\" (or update rule)"
 # match: "$.manifest.constant.REGION.value"
 # expr_rule: (=== ::match "us") ;;
 #}
 #rule: mft3 {
-# description: "SCOPE: If you adapted the manifest value for dev purposes, ensure it has the expected value to publish, \"PROJECT\" (or update rule)"
+# description: "SCOPE: If you adapted this value for dev purposes, ensure it has the expected value to publish, \"PROJECT\" (or update rule)"
 # match: "$.manifest.constant.SCOPE.value"
 # expr_rule: (=== ::match "PROJECT") ;;
 #}

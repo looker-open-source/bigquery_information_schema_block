@@ -6,6 +6,8 @@ view: job_stages {
     primary_key: yes
     hidden: yes
     sql: ${jobs.job_id} || "-" || CAST(${stage_id} AS STRING) ;;
+    #LAMS
+    #rule_exemptions:{F1:"Parent view references are ok/required for nested field views"}
   }
 
   dimension: stage_id {

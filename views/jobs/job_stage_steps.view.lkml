@@ -6,6 +6,8 @@ view: job_stage_steps {
     primary_key: yes
     hidden: yes
     sql: ${jobs.job_id} || "-" || CAST(${job_stages.stage_id} AS STRING) || "-" || CAST(job_stage_steps_offset AS STRING) ;;
+    #LAMS
+    #rule_exemptions:{F1:"Parent view references are ok/required for nested field views"}
   }
 
   dimension: kind {}
