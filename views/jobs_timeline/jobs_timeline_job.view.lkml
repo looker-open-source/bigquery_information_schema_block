@@ -15,12 +15,12 @@ view: jobs_timeline_job {
     link: {
       label: "Job Lookup Dashboard"
       url: "/dashboards-next/bigquery_information_schema::job_lookup_dashboard?Job%20ID={{ value | encode_uri}}&Created={{date.date_in_filter_format | encode_uri}}"
-      icon_url: "http://www.looker.com/favicon.ico"
+      icon_url: "/favicon.ico"
     }
     link: {
       label: "View Query History in BigQuery"
       url: "https://console.cloud.google.com/bigquery?j=bq:@{REGION}:{{ value }}&page=queryresults"
-      icon_url: "http://www.looker.com/favicon.ico"
+      icon_url: "https://cloud.google.com/favicon.ico"
     }
   }
 

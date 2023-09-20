@@ -2,7 +2,7 @@
 
 constant: CONNECTION {
   # Enter the name of the Looker connection to use
-  value: "looker_private_demo" #value: ""
+  value: ""
   export: override_optional
 }
 
@@ -14,7 +14,7 @@ constant: REGION {
 constant: SCOPE {
   # The table from which jobs data will be sourced, per the options described at https://cloud.google.com/bigquery/docs/information-schema-jobs
   # This block has been tested with PROJECT or ORGANIZATION. Tables for USER and FOLDER are untested as of 2021-04
-  value: "USER" #value: "PROJECT"
+  value: "PROJECT"
   export: override_optional
 }
 constant: BILLING_PROJECT_ID {
@@ -41,16 +41,9 @@ constant: MAX_JOB_LOOKBACK {
 
 constant: PII_QUERY_TEXT {
   # Whether/how to expose strings/numbers that may be embedded in query text or query plans (which might sometimes contain PII)
-  # Valid values are: SHOW, HASH, or HIDE
+  # Valid values are: SHOW, or HIDE
   # Invalid values will be treated as HIDE
   value: "HIDE"
-  export: override_optional
-}
-
-constant: PII_HASH_PADDING {
-  # If your other PII constant specifies the HASH option, you may specify padding to be added before computing the hash, to make the hash
-  # more resistant to pre-computed hash tables
-  value: "oQ4IS2cTmXBN"
   export: override_optional
 }
 

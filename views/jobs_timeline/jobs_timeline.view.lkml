@@ -61,12 +61,12 @@ view: jobs_timeline_base {
     link: {
       label: "Job Lookup Dashboard"
       url: "/dashboards-next/bigquery_information_schema::job_lookup_dashboard?Job%20ID={{ value | encode_uri}}&Created={{date.date_in_filter_format | encode_uri}}"
-      icon_url: "http://www.looker.com/favicon.ico"
+      icon_url: "/favicon.ico"
     }
     link: {
       label: "View Query History in BigQuery"
       url: "https://console.cloud.google.com/bigquery?j=bq:@{REGION}:{{ value }}&page=queryresults"
-      icon_url: "http://www.looker.com/favicon.ico"
+      icon_url: "https://cloud.google.com/favicon.ico"
     }
     #LAMS
     #rule_exemptions:{F1:"The performance benefit of linking to a date-filterd dashboard is significant, and we can ensure that the date view is always available to prevent errors"}

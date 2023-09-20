@@ -52,12 +52,12 @@ view: jobs_base {
     link: {
       label: "Job Lookup Dashboard"
       url: "/dashboards-next/bigquery_information_schema::job_lookup_dashboard?Job%20ID={{ value | encode_uri}}&Created={{date.date_in_filter_format | encode_uri}}"
-      icon_url: "http://www.looker.com/favicon.ico"
+      icon_url: "/favicon.ico"
     }
     link: {
       label: "View Query History in BigQuery"
       url: "https://console.cloud.google.com/bigquery?j=bq:@{REGION}:{{ value | uri_encode }}&page=queryresults"
-      icon_url: "https://www.gstatic.com/devrel-devsite/prod/vb06d4bce6b32c84cf01c36dffa546f7ea4ff7fc8fcd295737b014c1412e4d118/cloud/images/favicons/onecloud/favicon.ico"
+      icon_url: "https://cloud.google.com/favicon.ico"
     }
     #LAMS
     #rule_exemptions:{F1:"The performance benefit of linking to a date-filterd dashboard is significant, and we can ensure that the date view is always available to prevent errors"}
@@ -107,7 +107,7 @@ view: jobs_base {
 #     link: {
 #       label: "User Lookup Dashboard"
 #       url: "/dashboards/...?User={{ value | uri_encode }}"
-#       icon_url: "http://www.looker.com/favicon.ico"
+#       icon_url: "/favicon.ico"
 #     }
   }
 
@@ -431,7 +431,8 @@ view: jobs_base {
 
   dimension: query_raw {
     hidden: yes
-    sql: ${TABLE}.query ;;
+    sql: {%if "@{PII_QUERY_TEXT}" == "SHOW" %} ${TABLE}.query {%
+      else %} REGEXP_REPLACE(REGEXP_REPLACE(${TABLE}.query, r"""'(\\.|[^'\\])+('|$)|"(\\.|[^"\\])+("|$)""", "[Redacted string]"), "[0-9][0-9][0-9][0-9]+", "[Redacted int]") {% endif %};;
   }
 
   dimension: query_text {
