@@ -20,6 +20,10 @@
         "label": "Dataset Location",
         "description": "Example: 'us' or 'eu'"
       },
+      "PII_QUERY_TEXT": {
+        "label": "Possible PII Handling",
+        "description": "Whether/how to expose strings/numbers that may be embedded in query text or query plans (which might sometimes contain PII). Valid values are: SHOW or HIDE."
+      },
       "BILLING_PROJECT_ID": {
         "label": "Billing Project ID",
         "description": "This is used to reference Capacity Commitment data (for flat-rate billing) to compare slot usage against"
