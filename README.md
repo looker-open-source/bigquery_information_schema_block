@@ -1,5 +1,7 @@
 # BigQuery Information Schema Looker Block
+
 **This is not an officially supported Google product.**
+
 This repository contains a Looker block for monitoring and optimizing Google BigQuery usage and performance, built off of the [Information Schema](https://cloud.google.com/bigquery/docs/information-schema-intro) tables provided natively within BigQuery.
 
 ## Setup
