@@ -1,6 +1,6 @@
 # BigQuery Information Schema Looker Block
 
-**This is not an officially supported Google product.**
+This is not an officially supported Google product. This project is not eligible for the [Google Open Source Software Vulnerability Rewards Program](https://bughunters.google.com/open-source-security).
 
 This repository contains a Looker block for monitoring and optimizing Google BigQuery usage and performance, built off of the [Information Schema](https://cloud.google.com/bigquery/docs/information-schema-intro) tables provided natively within BigQuery.
 
@@ -65,7 +65,6 @@ The percentage of [data written to shuffle and spilled to disk](https://cloud.go
 
 ### % of Cached Queries
 A higher percentage of [Cached queries](https://cloud.google.com/bigquery/docs/cached-results) will result in lower on-demand costs and lower resource utilization. In addition to reducing costs, queries that use cached results are significantly faster because BigQuery does not need to compute the result set.
-
 
 ### BigQuery Information Schema Data Structure
 
