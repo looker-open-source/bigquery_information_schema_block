@@ -8,11 +8,11 @@ jobs:
     name: LAMS LookML Linter Job
     steps:
     - name: Checkout your LookML
-      uses: actions/checkout@v1
+      uses: actions/checkout@v4
     - name: Setup Node
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v4
       with:
-        node-version: '16.x'
+        node-version: '20'
     - name: Install LAMS
       run: npm install -g @looker/look-at-me-sideways@3
     - name: Run LAMS
