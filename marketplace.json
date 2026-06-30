@@ -2,7 +2,7 @@
   "label": "BigQuery Information Schema Performance Monitoring",
   "category_label": "Models",
   "branding": {
-    "image_uri": "https://marketplace-api.looker.com/block-icons/bq_icon.png",
+    "image_uri": "https://static-a.cdn.looker.app/marketplace/block-icons/bq_icon.png",
     "tagline": "Monitor and Explore your BigQuery Usage and Performance"
   },
 
